@@ -4,6 +4,7 @@ import setuptools
 with open("README.md") as fp:
     long_description = fp.read()
 
+cdk_version = "125"
 
 setuptools.setup(
     name="aws_transfer_family",
@@ -19,7 +20,10 @@ setuptools.setup(
     packages=setuptools.find_packages(where="aws_transfer_family"),
 
     install_requires=[
-        "aws-cdk.core==1.125.0",
+        "aws-cdk.core==1." + cdk_version + ".0",
+        "aws-cdk.aws_s3==1." + cdk_version + ".0",
+        "aws-cdk.aws_s3_deployment==1." + cdk_version + ".0",
+        "aws-cdk.aws_transfer==1." + cdk_version + ".0",
     ],
 
     python_requires=">=3.6",
