@@ -12,7 +12,7 @@ logger_statement = iam.PolicyStatement(
         "logs:CreateLogGroup",
         "logs:PutLogEvents"
     ],
-    effect=iam.Effect("ALLOW"),
+    effect=iam.Effect.ALLOW,
     resources=["*"],
 )
 
@@ -27,7 +27,7 @@ common_bucket_access_statement = iam.PolicyStatement(
         "s3:DeleteObject",
         "s3:ListBucket"
     ],
-    effect=iam.Effect("ALLOW"),
+    effect=iam.Effect.ALLOW,
     resources=[
         f"arn:aws:s3:::{config.bucket_name}",
         f"arn:aws:s3:::{config.bucket_name}/*",
@@ -42,7 +42,7 @@ prevent_deleting_shared_statement = iam.PolicyStatement(
     actions=[
         "s3:DeleteObject",
     ],
-    effect=iam.Effect("DENY"),
+    effect=iam.Effect.DENY,
     resources=[
         f"arn:aws:s3:::{config.bucket_name}/shared/",
     ]
@@ -57,7 +57,7 @@ deny_write_to_shared_statement = iam.PolicyStatement(
         "s3:PutObject",
         "s3:DeleteObject",
     ],
-    effect=iam.Effect("DENY"),
+    effect=iam.Effect.DENY,
     resources=[
         f"arn:aws:s3:::{config.bucket_name}/shared",
         f"arn:aws:s3:::{config.bucket_name}/shared/*",
