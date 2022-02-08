@@ -58,7 +58,7 @@ class AwsTransferFamilyStack(cdk.Stack):
             ]
         )
 
-        roles_to_group_mapping ={
+        roles_to_group_mapping = {
             'users': _user_role,
             'guests': _guest_role
         }

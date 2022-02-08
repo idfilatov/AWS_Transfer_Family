@@ -34,20 +34,20 @@ def create_role(self, role_name_suffix: str, statements: list):
     return _role
 
 
-def key_pair_exists(_folder_with_keys:str, _key_name:str):
+def key_pair_exists(_folder_with_keys: str, _key_name: str):
     return os.path.exists(os.path.join(_folder_with_keys, _key_name))\
            and os.path.exists(os.path.join(_folder_with_keys, _key_name + ".pub"))
 
 
-def delete_extra_keys(_folder_with_keys:str):
+def delete_extra_keys(_folder_with_keys: str):
     for file in os.listdir(_folder_with_keys):
         _file = file.replace('.pub', '')
-        _group, _username = _file.split('-')[2:4]
-        if {'group': _group,'username': _username} not in config.members:
+        _group, _username = _file.split('-')[2: 4]
+        if {'group': _group, 'username': _username} not in config.members:
             os.remove(os.path.join(_folder_with_keys, file))
 
 
-def create_key_pair(_folder_with_keys:str, _key_name:str):
+def create_key_pair(_folder_with_keys: str, _key_name: str):
     for file in os.listdir(_folder_with_keys):
         if _key_name in file:
             os.remove(os.path.join(_folder_with_keys, file))
@@ -55,7 +55,7 @@ def create_key_pair(_folder_with_keys:str, _key_name:str):
     os.system(f'ssh-keygen -P "" -q -m PEM -f {_folder_with_keys}/{_key_name}')
 
 
-def get_public_ssh_key(group:str, username:str):
+def get_public_ssh_key(group: str, username: str):
     _folder_with_keys = os.path.join(
         'aws_transfer_family' if not __name__ == "__main__" else '',
         'secret_keys',
