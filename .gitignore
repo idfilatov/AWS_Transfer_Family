@@ -5,7 +5,9 @@ __pycache__
 .env
 .venv
 *.egg-info
-/.idea
+
+.idea/workspace.xml
+*.xml
 
 # CDK asset staging directory
 .cdk.staging
@@ -13,4 +15,3 @@ cdk.out
 
 
 aws_transfer_family/secret_keys
-.idea/workspace.xml

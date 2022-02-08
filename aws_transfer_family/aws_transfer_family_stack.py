@@ -9,25 +9,6 @@ import policy_statements
 import config
 import utils
 
-members = [
-    {
-        'group': 'users',
-        'username': 'ifilatov'
-    },
-    {
-        'group': 'users',
-        'username': 'snazau'
-    },
-    {
-        'group': 'guests',
-        'username': 'person1'
-    },
-    {
-        'group': 'guests',
-        'username': 'person2'
-    }
-]
-
 
 class AwsTransferFamilyStack(cdk.Stack):
 
@@ -36,9 +17,9 @@ class AwsTransferFamilyStack(cdk.Stack):
 
         account_id_tuple = os.environ.get("CDK_DEFAULT_ACCOUNT")
         region = os.environ.get("CDK_DEFAULT_REGION")
-        print("region: ", region)
+        print("Region: ", region)
         account_id_string = ''.join(account_id_tuple)
-        print("account_id: ", account_id_string)
+        print("Account_id: ", account_id_string)
 
         _bucket = s3.Bucket(
             self, "TransferFamilyBucket",
@@ -88,12 +69,13 @@ class AwsTransferFamilyStack(cdk.Stack):
         )
         _server.apply_removal_policy(core.RemovalPolicy.DESTROY)
 
-        for member in members:
-            is_user = True if member['group'] == 'users' else False
+        for member in config.members:
+            _is_user = True if member['group'] == 'users' else False
+            _ssh_public_key = utils.get_public_ssh_key(member['group'], member['username'])
             _server_user = transfer.CfnUser(
                 self, f"CfnTransferFamilyServer-{member['group']}-{member['username']}",
                 server_id=_server.attr_server_id,
-                role=_user_role.role_arn if is_user else _guest_role.role_arn,
+                role=_user_role.role_arn if _is_user else _guest_role.role_arn,
                 user_name=member['username'],
                 home_directory_type='LOGICAL',
                 home_directory_mappings=[
@@ -106,8 +88,7 @@ class AwsTransferFamilyStack(cdk.Stack):
                         target=f"/{config.bucket_name}/{member['group']}/{member['username']}"
                     ),
                 ],
-                ssh_public_keys=[
-                    'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC+Ocwh4557KxPonCxC6bQRaDilzDHR+nCUGmQqtwPBqHU9Czn2znJQWBGVrJFSVMrMsteoOVVX/AnsgDq6CVy2Cwxz0pN2ruOPfRyuJ+bECeovuAX9ReX5p/adnwo4NiMiYJT3xrWkrzPIYgRcohuQTA0RJwsSVuIOj7klnRAYaMYT70mreOmA1Y9Lqm7cyqkRqUcouqSnFCz4E9ZC/r+Br4HpmzmIHW9Lxm57Sm89Qt8fIynZEMbFebHuCKVw0JaPtuVSR9yN9wRUNXtUdInw9lATMLOU0YHBncyoMc8CjgC+Yk8XkK9q1AaJekBCun1/ikXLvvrd+eff5b9PmKlJ04remTWxv8p0yYWeA2On5qFHhejZELRLvli75v6wXMBASYHmCFgvEWKroXuWNiKhG/XtvQqfQFCSMWISTa/WAiizCjHoYTZOZqCafruzSwdCfRoj1J5zsYUjqWvL8ujFOdYXSYOUFA7rCdxI+UE1JYX6RmCB8EoHroSXTr8COf0=']
+                ssh_public_keys=[_ssh_public_key]
             )
             _server_user.apply_removal_policy(core.RemovalPolicy.DESTROY)
 
