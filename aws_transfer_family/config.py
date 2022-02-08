@@ -1,28 +1,34 @@
 bucket_name = 'transfer-family-bucket-cdk'
 
+
+class GroupNames:
+    users = 'users'
+    guests = 'guests'
+
+
 members = [
     {
-        'group': 'users',
+        'group': GroupNames.users,
         'username': 'ifilatov'
     },
     {
-        'group': 'users',
+        'group': GroupNames.users,
         'username': 'snazau'
     },
     {
-        'group': 'users',
+        'group': GroupNames.users,
         'username': 'anaumov'
     },
     {
-        'group': 'guests',
+        'group': GroupNames.guests,
         'username': 'person1'
     },
     {
-        'group': 'guests',
+        'group': GroupNames.guests,
         'username': 'person2'
     },
     {
-        'group': 'guests',
+        'group': GroupNames.guests,
         'username': 'person3'
     },
 ]
