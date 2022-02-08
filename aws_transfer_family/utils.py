@@ -35,11 +35,20 @@ def create_role(self, role_name_suffix: str, statements: list):
 
 
 def key_pair_exists(_folder_with_keys: str, _key_name: str):
-    return os.path.exists(os.path.join(_folder_with_keys, _key_name))\
-           and os.path.exists(os.path.join(_folder_with_keys, _key_name + ".pub"))
+    """
+    Checks if both (private and public) ssh-keys are exist
+    """
+
+    return os.path.exists(os.path.join(_folder_with_keys, _key_name)) and \
+           os.path.exists(os.path.join(_folder_with_keys, _key_name + ".pub"))
 
 
 def delete_extra_keys(_folder_with_keys: str):
+    """
+    Deletes if some extra keys exists
+    (i.e. keys pair exists but there is no owner in config.members)
+    """
+
     for file in os.listdir(_folder_with_keys):
         _file = file.replace('.pub', '')
         _group, _username = _file.split('-')[2: 4]
@@ -48,6 +57,9 @@ def delete_extra_keys(_folder_with_keys: str):
 
 
 def create_key_pair(_folder_with_keys: str, _key_name: str):
+    """
+    Uses shell command for creating ssh-key pair for one member
+    """
     for file in os.listdir(_folder_with_keys):
         if _key_name in file:
             os.remove(os.path.join(_folder_with_keys, file))
@@ -56,6 +68,9 @@ def create_key_pair(_folder_with_keys: str, _key_name: str):
 
 
 def get_public_ssh_key(group: str, username: str):
+    """
+    Return (create if need) public part of ssh-key pair
+    """
     _folder_with_keys = os.path.join(
         'aws_transfer_family' if not __name__ == "__main__" else '',
         'secret_keys',

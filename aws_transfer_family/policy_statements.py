@@ -50,7 +50,7 @@ prevent_deleting_shared_statement = iam.PolicyStatement(
 
 '''
     Policy statement.
-    Dont allow guests to Write/Delete <shared> folder from S3 Bucket (Read-only mode)
+    Dont allow guests to Write/Delete into <shared> folder from S3 Bucket (Read-only mode)
 '''
 deny_write_to_shared_statement = iam.PolicyStatement(
     actions=[

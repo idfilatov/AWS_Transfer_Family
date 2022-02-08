@@ -24,6 +24,7 @@ setuptools.setup(
         "aws-cdk.aws_s3==1." + cdk_version + ".0",
         "aws-cdk.aws_s3_deployment==1." + cdk_version + ".0",
         "aws-cdk.aws_transfer==1." + cdk_version + ".0",
+        "boto3"
     ],
 
     python_requires=">=3.6",

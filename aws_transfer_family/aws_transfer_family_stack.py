@@ -59,8 +59,8 @@ class AwsTransferFamilyStack(cdk.Stack):
         )
 
         roles_to_group_mapping = {
-            'users': _user_role,
-            'guests': _guest_role
+            config.GroupNames.users: _user_role,
+            config.GroupNames.guests: _guest_role
         }
 
         _server = transfer.CfnServer(
@@ -95,5 +95,3 @@ class AwsTransferFamilyStack(cdk.Stack):
                 ssh_public_keys=[_ssh_public_key]
             )
             _server_user.apply_removal_policy(core.RemovalPolicy.DESTROY)
-
-            # eval("aws s3api put-object --bucket transfer-family-bucket-cdk --key ifilatov/")

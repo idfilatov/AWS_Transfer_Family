@@ -27,8 +27,5 @@ members = [
         'group': GroupNames.guests,
         'username': 'person2'
     },
-    {
-        'group': GroupNames.guests,
-        'username': 'person3'
-    },
+
 ]
