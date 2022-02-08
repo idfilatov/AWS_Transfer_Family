@@ -35,7 +35,6 @@ def create_role(self, role_name_suffix: str, statements: list):
 
 
 def key_pair_exists(_folder_with_keys:str, _key_name:str):
-
     return os.path.exists(os.path.join(_folder_with_keys, _key_name))\
            and os.path.exists(os.path.join(_folder_with_keys, _key_name + ".pub"))
 
@@ -53,14 +52,10 @@ def create_key_pair(_folder_with_keys:str, _key_name:str):
         if _key_name in file:
             os.remove(os.path.join(_folder_with_keys, file))
 
-    # os.system(f"echo kek > {_folder_with_keys}/file.txt")
     os.system(f'ssh-keygen -P "" -q -m PEM -f {_folder_with_keys}/{_key_name}')
 
 
 def get_public_ssh_key(group:str, username:str):
-    # print(os.path.abspath(__file__))
-    # print(os.path.dirname(os.path.abspath(__file__)))
-    # print(__name__ == "__main__")
     _folder_with_keys = os.path.join(
         'aws_transfer_family' if not __name__ == "__main__" else '',
         'secret_keys',
@@ -70,10 +65,8 @@ def get_public_ssh_key(group:str, username:str):
     _key_name = f"ssh-key-{group}-{username}"
 
     if not key_pair_exists(_folder_with_keys, _key_name):
-        # print('key pair dont exists')
         create_key_pair(_folder_with_keys, _key_name)
 
-    # print('key pair exists')
     f = open(os.path.join(_folder_with_keys, _key_name + '.pub'), "r")
     _public_ssh_key_raw = f.read()
     _public_ssh_key = "".join(_public_ssh_key_raw.split(" ")[:2])
@@ -82,5 +75,6 @@ def get_public_ssh_key(group:str, username:str):
 
 
 if __name__ == "__main__":
-    _public_ssh_key = get_public_ssh_key('users', 'kek123')
-    print(_public_ssh_key)
+    pass
+    # _public_ssh_key = get_public_ssh_key('users', 'kek123')
+    # print(_public_ssh_key)

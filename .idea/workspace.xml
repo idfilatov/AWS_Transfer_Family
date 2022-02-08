@@ -4,7 +4,6 @@
     <list default="true" id="c8a245ea-da76-401f-b1bf-a69c7a71567b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aws_transfer_family/aws_transfer_family_stack.py" beforeDir="false" afterPath="$PROJECT_DIR$/aws_transfer_family/aws_transfer_family_stack.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aws_transfer_family/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/aws_transfer_family/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aws_transfer_family/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/aws_transfer_family/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -58,6 +58,11 @@ class AwsTransferFamilyStack(cdk.Stack):
             ]
         )
 
+        roles_to_group_mapping ={
+            'users': _user_role,
+            'guests': _guest_role
+        }
+
         _server = transfer.CfnServer(
             self, "CfnTransferFamilyServer",
             protocols=['SFTP'],
@@ -70,12 +75,11 @@ class AwsTransferFamilyStack(cdk.Stack):
         _server.apply_removal_policy(core.RemovalPolicy.DESTROY)
 
         for member in config.members:
-            _is_user = True if member['group'] == 'users' else False
             _ssh_public_key = utils.get_public_ssh_key(member['group'], member['username'])
             _server_user = transfer.CfnUser(
                 self, f"CfnTransferFamilyServer-{member['group']}-{member['username']}",
                 server_id=_server.attr_server_id,
-                role=_user_role.role_arn if _is_user else _guest_role.role_arn,
+                role=roles_to_group_mapping[member['group']].role_arn,
                 user_name=member['username'],
                 home_directory_type='LOGICAL',
                 home_directory_mappings=[
