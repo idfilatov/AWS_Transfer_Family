@@ -5,6 +5,12 @@ AWS Transfer Family continues to evolve as a managed file transfer (MFT) solutio
 AWS Transfer Family also provides logical directories as a built-in feature that maps multiple S3 buckets and files to a virtual directory.
 Logical directories simplify complex folder structures for data distribution without replicating files across multiple users.
 With this feature, you define and lock a specific user’s visibility into the data file-structure, have chroot-capabilities, and hide S3 bucket names and paths from users.
+
+Let's assume you have S3 bucket and want to use it like FTP-server for users.
+Each user has his own folder, and there is *shared* folder, to which everyone has access
+For the sake of privacy and security, you do not want to give one user access files of other users,
+but it is better to completely deprive them of the opportunity to see other people's folders.
+
 ## Before you start
 
 Requirements for working with AWS CDK:
