@@ -18,7 +18,7 @@ In the root project directory:
    ```
    > python -m venv .venv
    ```
- * Activate envoroment
+ * Activate environment
    ```
    > source .venv/bin/activate
    ```
@@ -46,11 +46,16 @@ command.
  * `cdk docs`        open CDK documentation
 
 ## How to use
+ * ### Don't forget activate environment
  * ### What's inside [config.py](aws_transfer_family/config.py) :
    * `bucket_name` - name of your S3 bucket
    * `class GroupNames` - fixed list of possible groups
-   * `members` - description of storage clients
-     
+   * `members` - description of storage users
+   
+ * ### Deploying
+   * Define your Groups and Users
+   * Run `cdk deploy`, await it's ending
+   * Run `python update_bucket_structure.py`. It creates S3 bucket structure for your users
 
  * ### If you want to add another `NewGroup` :
    * Add new record into [class GroupNames](https://github.com/Wag-ON/AWS_Transfer_Family/blob/9e528cfef5d791d9e0318e59a0bc2c9b937c990c/aws_transfer_family/config.py#L4)
