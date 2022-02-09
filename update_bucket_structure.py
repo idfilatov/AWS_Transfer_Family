@@ -20,7 +20,7 @@ def is_owner_of_folder_exists(_object_key: str):
 
     _group, _username = _object_key.split('/')[:2]
 
-    return {'group': _group, 'username': _username} in config.members
+    return {'group': _group, 'username': _username} in config.users
 
 
 if __name__ == "__main__":
@@ -33,7 +33,7 @@ if __name__ == "__main__":
     current_object_keys = [key['Key'] for key in s3_client.list_objects(Bucket=bucket_name)['Contents']]
 
     # Creates folders for members
-    for member in config.members:
+    for member in config.users:
         _user_folder_path = f"{member['group']}/{member['username']}/"
         if _user_folder_path in current_object_keys:
             continue

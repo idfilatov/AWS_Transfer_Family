@@ -41,8 +41,8 @@ class AwsTransferFamilyStack(cdk.Stack):
             ]
         )
 
-        _user_role = utils.create_role(
-            self, "Users",
+        _admin_role = utils.create_role(
+            self, "Admins",
             [
                 policy_statements.common_bucket_access_statement,
                 policy_statements.prevent_deleting_shared_statement
@@ -59,7 +59,7 @@ class AwsTransferFamilyStack(cdk.Stack):
         )
 
         roles_to_group_mapping = {
-            config.GroupNames.users: _user_role,
+            config.GroupNames.admins: _admin_role,
             config.GroupNames.guests: _guest_role
         }
 
@@ -74,7 +74,7 @@ class AwsTransferFamilyStack(cdk.Stack):
         )
         _server.apply_removal_policy(core.RemovalPolicy.DESTROY)
 
-        for member in config.members:
+        for member in config.users:
             _ssh_public_key = utils.get_public_ssh_key(member['group'], member['username'])
             _server_user = transfer.CfnUser(
                 self, f"CfnTransferFamilyServer-{member['group']}-{member['username']}",
