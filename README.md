@@ -53,4 +53,7 @@ command.
      
 
  * ### If you want to add another `NewGroup` :
+   * Add new record into `class GroupNames`
+   * If necessary, define new IAM Policy Statements in [policy_statements.py](aws_transfer_family/policy_statements.py)
+   * Add creation of new IAM Role for this `NewGroup` ([like this](https://github.com/Wag-ON/AWS_Transfer_Family/blob/9e528cfef5d791d9e0318e59a0bc2c9b937c990c/aws_transfer_family/aws_transfer_family_stack.py#L52))
 
