@@ -1,5 +1,10 @@
 # Cool name
 ## Cool descriptions what it does
+Sharing data is at the core of collaboration efforts sparking innovation.
+AWS Transfer Family continues to evolve as a managed file transfer (MFT) solution with a variety of ways to configure access.
+AWS Transfer Family also provides logical directories as a built-in feature that maps multiple S3 buckets and files to a virtual directory.
+Logical directories simplify complex folder structures for data distribution without replicating files across multiple users.
+With this feature, you define and lock a specific user’s visibility into the data file-structure, have chroot-capabilities, and hide S3 bucket names and paths from users.
 ## Before you start
 
 Requirements for working with AWS CDK:
@@ -71,5 +76,5 @@ command.
    
  * ### SSH keys
    Pair (public/private) of keys are creating automatically and saving in `root/aws_transfer_family/secret_keys`  
-   Deleting even one of pair from this directory will lead to creating the new one pair and updating of User's `ssh public key` property
+   Deleting even one key from User's pair from this directory will lead to creating the new one pair and updating of User's `ssh public key` property
 
