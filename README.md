@@ -46,7 +46,7 @@ command.
  * `cdk docs`        open CDK documentation
 
 ## How to use
- * ### What's inside [config.py](aws_transfer_family.py) :
+ * ### What's inside [config.py](aws_transfer_family/config.py) :
    * `bucket_name` - name of your S3 bucket
    * `class GroupNames` - fixed list of possible groups
    * `members` - description of storage clients
