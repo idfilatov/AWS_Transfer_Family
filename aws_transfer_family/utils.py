@@ -75,6 +75,7 @@ def get_public_ssh_key(group: str, username: str):
         'aws_transfer_family' if not __name__ == "__main__" else '',
         'secret_keys',
     )
+    os.makedirs(_folder_with_keys, exist_ok=True)
     delete_extra_keys(_folder_with_keys)
 
     _key_name = f"ssh-key-{group}-{username}"
