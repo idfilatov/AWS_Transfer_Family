@@ -1,6 +1,6 @@
 import boto3
 
-import config
+from aws_transfer_family import config
 
 
 def is_it_member_folder_key(_key: str):
@@ -10,7 +10,7 @@ def is_it_member_folder_key(_key: str):
 
     split = _key.split('/')
 
-    return len(split) == 3 and split[2] == ''
+    return len(split) == 3 and split[2] == '' and split[0] != 'shared'
 
 
 def is_owner_of_folder_exists(_object_key: str):
@@ -30,16 +30,20 @@ if __name__ == "__main__":
     # Creates shared folder
     s3_client.put_object(Bucket=bucket_name, Key='shared/')
 
+    current_object_keys = [key['Key'] for key in s3_client.list_objects(Bucket=bucket_name)['Contents']]
+
     # Creates folders for members
     for member in config.members:
         _user_folder_path = f"{member['group']}/{member['username']}/"
+        if _user_folder_path in current_object_keys:
+            continue
+        print(f"Creating [{_user_folder_path}]")
         s3_client.put_object(Bucket=bucket_name, Key=_user_folder_path)
 
     # Deletes if some extra folders exists
     # (i.e. folders exists but there is no owner in config.members)
     folders_to_delete = []
-    for key in s3_client.list_objects(Bucket=bucket_name)['Contents']:
-        object_key = key['Key']
+    for object_key in current_object_keys:
         if not is_it_member_folder_key(object_key):
             continue
         if is_owner_of_folder_exists(object_key):
@@ -48,6 +52,6 @@ if __name__ == "__main__":
     for folder_to_delete in folders_to_delete:
         objects_to_delete = [key['Key'] for key in s3_client.list_objects(Bucket=bucket_name, Prefix=folder_to_delete)['Contents']]
         objects_to_delete.sort(reverse=True)
-        print(objects_to_delete)
         for object_to_delete in objects_to_delete:
+            print(f"Deleting [{object_to_delete}]")
             s3_client.delete_object(Bucket=bucket_name, Key=object_to_delete,)

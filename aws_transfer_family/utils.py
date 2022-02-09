@@ -84,7 +84,7 @@ def get_public_ssh_key(group: str, username: str):
 
     f = open(os.path.join(_folder_with_keys, _key_name + '.pub'), "r")
     _public_ssh_key_raw = f.read()
-    _public_ssh_key = "".join(_public_ssh_key_raw.split(" ")[:2])
+    _public_ssh_key = " ".join(_public_ssh_key_raw.split(" ")[:2])
 
     return _public_ssh_key
 

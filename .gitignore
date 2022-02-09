@@ -13,4 +13,4 @@ __pycache__
 cdk.out
 
 
-aws_transfer_family/secret_keys
+aws_transfer_family/secret_keys/*
