@@ -56,4 +56,5 @@ command.
    * Add new record into [class GroupNames](https://github.com/Wag-ON/AWS_Transfer_Family/blob/9e528cfef5d791d9e0318e59a0bc2c9b937c990c/aws_transfer_family/config.py#L4)
    * If necessary, define new IAM Policy Statements in [policy_statements.py](aws_transfer_family/policy_statements.py)
    * [Add creation of new IAM Role](https://github.com/Wag-ON/AWS_Transfer_Family/blob/9e528cfef5d791d9e0318e59a0bc2c9b937c990c/aws_transfer_family/aws_transfer_family_stack.py#L52) for this `NewGroup`
+   * Add created Role to the [mapping](https://github.com/Wag-ON/AWS_Transfer_Family/blob/a6fe8343cfb238f7800dc739556f87b8c5355c04/aws_transfer_family/aws_transfer_family_stack.py#L61)
 
