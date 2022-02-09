@@ -37,7 +37,7 @@ command.
 
 
  * `cdk bootstrap aws://account_id/region` **(use only before first deploy in region)**  
- create bucket for temporary stack files storing
+ It creates bucket for temporary stack files storing
  * `cdk ls`          list all stacks in the app
  * `cdk synth`       emits the synthesized CloudFormation template
  * `cdk deploy`      deploy this stack to your default AWS account/region
@@ -46,8 +46,11 @@ command.
  * `cdk docs`        open CDK documentation
 
 ## How to use
- * ### What's inside `config.py`
+ * ### What's inside [config.py](aws_transfer_family.py) :
    * `bucket_name` - name of your S3 bucket
-   * `class GroupNames` - fixed list of possible groups  
-     If you want to add another Group, you should manually add
+   * `class GroupNames` - fixed list of possible groups
+   * `members` - description of storage clients
+     
+
+ * ### If you want to add another `NewGroup` :
 
