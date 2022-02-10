@@ -9,15 +9,15 @@ class GroupNames:
 users = [
     {
         'group': GroupNames.admins,
-        'username': 'ifilatov'
+        'username': 'user1'
     },
     {
         'group': GroupNames.admins,
-        'username': 'snazau'
+        'username': 'user2'
     },
     {
         'group': GroupNames.admins,
-        'username': 'anaumov'
+        'username': 'user3'
     },
     {
         'group': GroupNames.guests,
