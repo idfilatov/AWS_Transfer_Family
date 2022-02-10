@@ -6,6 +6,12 @@ __pycache__
 .venv
 *.egg-info
 
+**/.idea/*
+
 # CDK asset staging directory
 .cdk.staging
 cdk.out
+
+
+ssh-key*
+.idea/workspace.xml
