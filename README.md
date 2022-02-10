@@ -72,7 +72,7 @@ command.
  * ### What's inside [config.py](aws_transfer_family/config.py) :
     * `bucket_name` - name of your S3 bucket
     * `class GroupNames` - fixed list of possible groups
-    * `members` - description of storage users
+    * `users` - description of storage users
    
  * ### Deploying
     * Run `cdk deploy`, await it's ending
