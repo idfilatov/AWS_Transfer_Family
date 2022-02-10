@@ -1,12 +1,9 @@
-# Cool name
-## Cool descriptions what it does
-Sharing data is at the core of collaboration efforts sparking innovation.
-AWS Transfer Family continues to evolve as a managed file transfer (MFT) solution with a variety of ways to configure access.
-AWS Transfer Family also provides logical directories as a built-in feature that maps multiple S3 buckets and files to a virtual directory.
-Logical directories simplify complex folder structures for data distribution without replicating files across multiple users.
-With this feature, you define and lock a specific user’s visibility into the data file-structure, have chroot-capabilities, and hide S3 bucket names and paths from users.
+# SFTP-server using S3 and AWS Transfer Family
 
-Let's assume you have S3 bucket and want to use it like safe FTP-server for users. Each user will have his own folder, and there will be shared folder, to which everyone has access For the sake of privacy and security, you do not want to give one user access files of other users, but it is better to completely deprive them of the opportunity to see other people's folders.
+Let's assume you have S3 bucket and want to use it like safe FTP-server for users. 
+Each user will have his own folder, and there will be shared folder, to which everyone has access.
+For the sake of privacy and security, you do not want to give one user access files of other users,
+but it is better to completely deprive them of the opportunity to see other people's folders.
 
 For all these purposes, AWS Transfer Family is perfect.
 The AWS Transfer Family provides fully managed support for file transfers over SFTP, FTPS, and FTP directly into and out of Amazon S3 and Amazon EFS. 
@@ -19,8 +16,9 @@ In my example I use:
  * Two types of users: 
     * `admins` - with `read-write` access to the whole bucket
     * `guests` - with `read-only` access to shared folder, and `read-write` access to their own folders  
-   ![](readme_screenshots/Screenshot_1.png)  
-   * SSH-keys for connecting through FileZilla client
+   ![](readme_screenshots/Screenshot_1.png)
+   
+ * SSH-keys for connecting through FileZilla client
 
 
 ## Before you start
