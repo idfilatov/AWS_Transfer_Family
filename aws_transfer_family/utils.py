@@ -52,7 +52,7 @@ def delete_extra_keys(_folder_with_keys: str):
     for file in os.listdir(_folder_with_keys):
         _file = file.replace('.pub', '')
         _group, _username = _file.split('-')[2: 4]
-        if {'group': _group, 'username': _username} not in config.members:
+        if {'group': _group, 'username': _username} not in config.users:
             os.remove(os.path.join(_folder_with_keys, file))
 
 
